@@ -72,7 +72,10 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 30px;
+
+  padding: 10px;
 
   height: 80vh;
   width: 40vw;
@@ -92,11 +95,61 @@ const AppContainer = styled.div`
   .winner-font{
     font-size: 20px;
     font-weight: 700;
+    text-align: center;
   }
 
   .loser-font{
     font-size: 20px;
     font-weight: 700;
     color: red;
+    text-align: center;
   }
+
+  @media (max-width: 768px) {
+  .title{
+    font-size: 3rem;
+  }
+  
+  h4{
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  p, .winner-font, .loser-font{
+    font-size: 2rem;
+    text-align: center;
+  }
+  } 
+
+  @media (max-width: 500px) {
+  .title{
+    font-size: 2rem;
+  }
+  
+  h4{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  p, .winner-font, .loser-font{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  }  
+
+  @media (max-width: 430px) {
+  .title{
+    font-size: 1rem;
+  }
+  
+  h4{
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  p, .winner-font, .loser-font{
+    font-size: 1rem;
+    text-align: center;
+  }
+  } 
 `;
