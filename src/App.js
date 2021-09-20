@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import Dice from 'react-dice-roll';
 
 function App() {
-  const [diceValue, setDiceValue] = useState();
+  const [diceValue, setDiceValue] = useState('-');
   const [currentNumber, setCurrentNumber] = useState();
   const [showStatus, setShowStatus] = useState(false);
 
   useEffect(() => {
     randomNumber();
-  });
+  }, []);
 
   const randomNumber = () => {
     setCurrentNumber(Math.floor(Math.random() * 6) + 1);
-  }
+  };
 
   return (
     <MainAppWrapper>
@@ -21,22 +21,26 @@ function App() {
       <RightAppWrapper />
 
       <AppContainer>
-        <h2 className="title"> Roll Dice!</h2>
+        <div>
+          <h2 className="title"> Roll Dice!</h2>
+          <h4> Click the dice to roll </h4>
+        </div>
+
         <div>
           <p> Current Number: {currentNumber} </p>
-          <p> Rolled Number: {diceValue} </p>
+          <p> Rolled Number:  {diceValue} </p>
         </div>
 
         <Dice
           rollingTime={500}
-          size={50}
+          size={70}
           onRoll={(value) => { setDiceValue(value); setShowStatus(true) }}
         />
 
         {
           showStatus ?
             diceValue === currentNumber ?
-              <p> YOU WON</p> : <p> YOU LOST! </p>
+              <p className="winner-font"> YOU WON!</p> : <p className="loser-font"> You lost! Roll again. </p>
             :
             null
         }
@@ -45,7 +49,6 @@ function App() {
     </MainAppWrapper>
   );
 }
-
 export default App;
 
 const MainAppWrapper = styled.div`
@@ -69,11 +72,14 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
 
   height: 80vh;
   width: 40vw;
 
   background-color: #fff;
+  border-radius: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
   position: absolute;
   top: 10%;
@@ -83,7 +89,14 @@ const AppContainer = styled.div`
     text-align: center;
   }
 
-  .dice-container{
-    height: 15rem;
+  .winner-font{
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .loser-font{
+    font-size: 20px;
+    font-weight: 700;
+    color: red;
   }
 `;
